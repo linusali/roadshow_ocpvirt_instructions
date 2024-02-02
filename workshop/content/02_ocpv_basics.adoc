@@ -21,18 +21,18 @@ In this lab, you become familiar with running virtual machines (VMs) on Red Hat^
 
 Like other objects in OpenShift, Projects, which are an abstraction for Kubnernetes namespaces, are the boundaries for permissions and other aspects of using and manaing the resources. Creating a Project is an important first step for any deployment.
 
-. Browse to *Virtualization* -> *VirtualMachines* using the left navigation menu:
-+
-image::images/Create_VM_PVC/01_Left_Menu.png[Navigation Menu,136,266]
-+
-[NOTE]
-====
-The *Virtualization* tab is available only when Red Hat OpenShift Virtualization is installed and properly configured.
-====
+// . Browse to *Virtualization* -> *VirtualMachines* using the left navigation menu:
+// +
+// image::images/Create_VM_PVC/01_Left_Menu.png[Navigation Menu,136,266]
+// +
+// [NOTE]
+// ====
+// The *Virtualization* tab is available only when Red Hat OpenShift Virtualization is installed and properly configured.
+// ====
 
-. Examine the *VirtualMachines* dashboard that appears. There are currently several VMs listed, but are not turned on:
-+
-image::images/Create_VM_PVC/51_vm_list.png[]
+// . Examine the *VirtualMachines* dashboard that appears. There are currently several VMs listed, but are not turned on:
+// +
+// image::images/Create_VM_PVC/51_vm_list.png[]
 
 . Before creating a VM we need to create a new project. Virtual machines are deployed to a specific project, or namespace, where, by default, users without permission to the namespace cannot access, manage, or control them. Administrators can access all projects, and therefore view all virtual machines, however regular users must be given access to projects as needed.
 +
@@ -45,7 +45,7 @@ image::images/Create_VM_PVC/03_Create_Project.png[]
 
 == Create a Linux virtual machine
 
-. From the Virtual Machines inventory, click *Create VirtualMachine*
+. From the Virtual Machines inventory, click *Create VirtualMachine* -> *From Templates*
 +
 image::images/Create_VM_PVC/53_create_vm_button.png[]
 
@@ -59,11 +59,14 @@ image::images/Create_VM_PVC/04_Create_VM_Templates.png[]
 +
 image::images/Create_VM_PVC/05_Create_VM_Quick.png[]
 
+. Change vCPUs to 2 
++
+image::images/Create_VM_PVC/57_Increase_vCPU_Count.png[]
+
 . Change the name to `fedora01` and press *Quick create VirtualMachine*:
 +
 image::images/Create_VM_PVC/05_Create_VM_Quick_Name.png[]
 
-+
 . After a few seconds, expect to see the VM is `Running`. During this time, the storage provider has cloned the template disk so that it can be used by the newly created virtual machine. The amount of time this takes will depend on the storage provider.
 +
 image::images/Create_VM_PVC/06_Fedora_Running.png[]

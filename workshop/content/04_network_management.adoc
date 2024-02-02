@@ -16,14 +16,30 @@ However, virtual machines may also connect directly to one or more external netw
 
 At a high level, this is done by configuring the host networking, such as creating a mode 4 (LACP) bond and a Linux bridge on top. This workshop segment will walk through the next step in that process, creating a network attachment definition to allow VMs to connect to that bridge and, therefore, directly to the external network. 
 
-// WKTBD: Maybe add some NetworkPolicy (there is a web console wizard available now in 4.13).
-
-[NOTE]
-The OpenShift environment has already been configured with a Linux Bridge on each compute node your virtual machines will connect to, thus allowing for easy connectivity with/from outside network resources.
-
 .Goals
+* Create a node network configuaration policy 
 * Create a network attachment definition
 * Connect a VM to the external network
+
+== Create Node Network Configuration Policy
+The NMState Operator is used to manage node network configurations in a declarative manner. A Node Network Configuration Policy (NNCP) is a custom resource defined by NMState operator that allows you to specify the desired network configuration for OpenShift nodes.
+
+NNCP are clusterwide, hence it needs cluster admin access to perform the actions. Once the desired network(s) is created, you may use Network Attachment Definition to create the interface definition in a namespace. Later these definitions can be used to attach the interfaces to a Pod or VM using Multus.
+
+How is this done?
+
+. Navigate to *Networking* -> *NodeNetworkConfigurationPolicy* click *Create* -> *From Form*
++
+image::images/Networking/01_NNCP_Dashboard.png[]
+
+. Complete the form as below and click *Create*
++
+image::images/Networking/02_NNCP_Create.png[]
+
+== Inspect Networks 
+. Navigate to *Networking* -> *NodeNetworkState* to inspect the presence of the newly created bridge `br-flat`
++
+image::images/Networking/01_NNS_Dashboard.png[]
 
 == Create Network Attachment Definition
 

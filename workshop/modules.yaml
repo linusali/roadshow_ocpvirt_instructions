@@ -17,6 +17,8 @@ modules:
         name: OpenShift Virtualization Basics
     03_ocpv_customization:
         name: 'Customize Virtual Machines'
+    03_ocpv_pod_communication:
+        name: 'Run VM and Containers side by side'
     04_network_management:
         name: 'Network Management'
     05_storage_management:

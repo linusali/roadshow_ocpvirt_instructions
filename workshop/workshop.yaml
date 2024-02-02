@@ -5,6 +5,7 @@ modules:
     - 01_welcome
     - 02_ocpv_basics
     - 03_ocpv_customization
+    - 03_ocpv_pod_communication
     - 04_network_management
     - 05_storage_management
     - 06_backup_restore

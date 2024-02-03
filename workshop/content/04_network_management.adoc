@@ -101,6 +101,9 @@ image::images/Networking/04_VM_Network_Tab.png[]
 +
 Because this is a bridge connecting to the external network, we don't need to rely on any OpenShift features or capabilities to enable access, such as masquerade (NAT) for the virtual machines using the network. As a result, *type* should be `Bridge` here.
 +
+[NOTE]
+Currently the hot-plugging of network interface is a technology preview feature. It can be enabled from *Virtualization* -> *Overview* -> *Settings* -> *Preview Features* and selecting *Enable bridged network interface hot plug*
++
 image::images/Networking/05_VM_Network_Attach.png[]
 
 . Use the *Actions* menu to restart the VM. After rebooting, navigate to the *Console* tab:

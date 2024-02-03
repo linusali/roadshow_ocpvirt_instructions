@@ -98,7 +98,9 @@ Click *Create*
 . Ensure the correct pods are listed in *Pods* tab of the service
 +
 image::images/MixedEnv/02_Portal_SVC_Pods.png[]
-. Expose the portal to external world using routes. From left menu select *Neworking* -> *Routes* then click *Create Route*
+
+== Expose the portal 
+. Expose the portal to the internet using routes. From left menu select *Neworking* -> *Routes* then click *Create Route*
 . Fillup the form using the values below
 .. Set *Name* to `patient-portal`
 .. Select `patient-portal` from the *Services* drop down menu

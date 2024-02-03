@@ -32,7 +32,7 @@ In this section, we will examine the PVCs created by the Operator along with PVC
 
 The project `openshift-virtualization-os-images` contains all available boot sources and is automatically enabled when *OpenShift Virtualization* is installed.
 
-. Navigate to *Storage* -> *PersistentVolumeClaims*:
+. Navigate to *Storage* -> *VolumeSnapshots*:
 +
 image::images/Storage/00_Left_Menu.png[]
 
@@ -42,21 +42,19 @@ image::images/Storage/01_Select_Project.png[]
 
 . List the boot sources that OpenShift Virtualization automatically created.
 +
-image::images/Storage/02_List_PVCs.png[]
+image::images/Storage/02_List_VS.png[]
 
 . Select one from the list, for example, `fedora-XX`, to obtain detailed information.
 +
-In this lab, each of the PVCs will come from the `ocs-storagecluster-ceph-rbd` storage class provided by OpenShift Data Foundation. The details of the PVC show that it is a `ReadWriteMany` PVC, which is required for live migration and is using `block` mode. The mode can be `block` or `file`, depending on the storage vendor, and either will work equally well so long as `RWX` mode is available.
+In this lab, each of the VolumeSnapshots will come from the `ocs-storagecluster-rbdplugin-snapclass` VolumeSnapshotClass which uses OpenShift Data Foundation as the driver. 
 +
-The capacity should be large enough to hold the base operating system and any packages/software installed that will be used by any VMs created from this template disk. VMs created by cloning the disk can increase the size of the disk but cannot shrink it.
-+
-image::images/Storage/03_PVC_Info.png[]
+image::images/Storage/03_VS_Info.png[]
 
-. When a VM is created, the _Boot Source_ image is cloned, and a new disk is created. Switch to the project `vmexamples` and review the list of the _PVCs_ (disks). You will see a PVC for each of the disks for VMs in this project and a PVC for the Microsoft Windows Server 2019 disk image created in an earlier section of this workshop. This PVC, with the Microsoft Windows ISO, can be reused by other virtual machines to install the operating system if desired.
+. When a VM is created, the _Boot Source_ image is cloned, and a new disk is created. Switch to the project `vmexamples` and select *PersistentVolumeClaims* from the left menu. Review the list of the _PVCs_ (disks). You will see a PVC for each of the disks for VMs in this project.
 +
 image::images/Storage/04_List_PVCs_VMs.png[]
 
-. Select the `fedora02` to obtain information
+. Select the `fedora01` to obtain information
 +
 image::images/Storage/05_PVC_VM_Info.png[]
 
@@ -107,6 +105,8 @@ image::images/Storage/10_VM_Snapshots_Tab.png[]
 [NOTE]
 There is a warning about the `cloudinitdisk` not being included in the snapshot. This is expected and happens because it is an ephemeral disk.
 +
+Set *Name* to `fedora02-snap`
++
 image::images/Storage/11_VM_Snapshot_Dialog.png[]
 
 . Press *Save* and wait till the _Snapshot_ has been created and the *status* shows as `Succeeded`
@@ -133,7 +133,7 @@ In the previous step, the operating system was shutdown from within the guest. H
 +
 image::images/Storage/14_VM_Crashed.png[]
 
-. Using the *Actions* dropdown menu, stop the _Virtual Machine_. Wait until the VM is stopped.
+. Using the *Actions* dropdown menu, stop the _Virtual Machine_. Wait until the VM is stopped. You may have to use *Force Stop* since the server is not fully started.
 
 . Navigate back to the *Snapshots* tab and press *Restore* on the previously created snapshot.
 +
@@ -180,3 +180,10 @@ The cloned VM will have the same identity as the source VM, which may cause conf
 *Persistent volume claims (PVCs)*: A _PVC_ is a request for storage capacity and, when bound to a PV, how the system knows which storage volume to mount for the VM. As a VM user, you're able to use the storage without knowing the details of the underlying infrastructure environment.
 
 *Storage class*: A _storage class_ provides a way for administrators to describe the classes of storage they offer, for example, "gold," "silver," and "bronze". Different classes might map to quality of service levels, backup policies, and arbitrary policies determined by the cluster administrators. These will be specific to your storage vendor.
+
+*Volume Snapshot*: A _volume snapshot_ is a user’s request for either creating a point-in-time snapshot of a persistent volume, or binding to a pre-existing snapshot. It can be used to provision a new PersistentVolume with data copied from the snapshot, which is useful for data backup, restore, or cloning purposes.
+
+*Volume Snapshot Class*: A _volume snapshot class_ specifies parameters that a underlying storage system uses when creating a volume snapshot. A specific VolumeSnapshotClass is used by specifying its name in a VolumeSnapshot object. VolumeSnapshotClasses are non-namespaced. It allows administrators to define different classes of VolumeSnapshots, such as those with different storage performance characteristics or backup policies.
+
+*Volume Snapshot Content*: A _volume snapshot content_ represents the actual "on-disk" snapshot object in the underlying storage system. It is used by the storage system to manage the physical snapshot on the storage backend.
+

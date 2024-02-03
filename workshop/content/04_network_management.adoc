@@ -32,7 +32,16 @@ How is this done?
 +
 image::images/Networking/01_NNCP_Dashboard.png[]
 
-. Complete the form as below and click *Create*
+. Complete the form as below
++
+.. Select *Apply this NodeNetworkConfigurationPolicy only to specific subsets of nodes using the node selector* and set key to `node-role.kubernetes.io/worker` and click *Save*
++
+image::images/Networking/02_NNCP_Create_Node_Select.png[]
++
+.. Set *Policy name* to `br-flat`
+.. Set *Interface name* to `br-flat`
+.. Set *Port* to `enp3s0` and click *Create*
+
 +
 image::images/Networking/02_NNCP_Create.png[]
 
@@ -40,6 +49,11 @@ image::images/Networking/02_NNCP_Create.png[]
 . Navigate to *Networking* -> *NodeNetworkState* to inspect the presence of the newly created bridge `br-flat`
 +
 image::images/Networking/01_NNS_Dashboard.png[]
+
+. Click on the *linux-bridge (1)* and you can see the `br-flat` bridge listed. 
+. Expand one of the nodes by clicking on the ">" next it to get list of all network interfaces on the node.
++
+image:images/Networking/01_NNS_Node_details.png[]
 
 == Create Network Attachment Definition
 

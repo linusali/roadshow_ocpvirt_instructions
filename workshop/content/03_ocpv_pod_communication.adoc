@@ -37,7 +37,7 @@ spec:
     vm.kubevirt.io/name: fedora02
 ----
 +
-You can see that the `selector: ` is set to `vm.kubevirt.io/name: fedora02` which specifies which pod to select. In our case it will select the pod containing the VM, which already has this label automatically applied during the VM creation.
+You can see that the `selector:` is set to `vm.kubevirt.io/name: fedora02` which specifies which pod to select. In our case it will select the pod containing the VM, which already has this label automatically applied during the VM creation.
 +
 image::images/MixedEnv/00_DB_Service_def.png[] 
 +
@@ -60,8 +60,8 @@ image::images/MixedEnv/02_Portal_Deployment.png[]
 .. Specify the *Name* as `patient-portal`
 .. Set *Image Name* as `quay.io/skupper/patient-portal-frontend`
 .. Add two environment variables. This will help the portal application to locate its database.
-... `DATABASE_SERVICE_HOST` to `database`
-... `DATABASE_SERVICE_PORT` to `5432`
+... `DATABASE_SERVICE_HOST` to `database` -> This is the service name we created above.
+... `DATABASE_SERVICE_PORT` to `5432` -> This is the port exposed by the service.
 +
 image::images/MixedEnv/02_Portal_Deployment_Config.png[]
 
@@ -111,4 +111,6 @@ image::images/MixedEnv/02_Portal_Route.png[]
 
 +
 Once done click *Create*
-. Verify if the route is active by clicking on the link  link:https://patient-portal-vmexamples.apps.%guid%.dynamic.redhatworkshops.io/[https://patient-portal-vmexamples.apps.%guid%.dynamic.redhatworkshops.io/]
+. Verify if the route is active by clicking on the link  link:https://patient-portal-vmexamples.apps.%guid%.dynamic.redhatworkshops.io/[https://patient-portal-vmexamples.apps.%guid%.dynamic.redhatworkshops.io/] in the `patient-portal` route's details page.
++
+image:images/MixedEnv/02_Portal_Route_Details.png[]

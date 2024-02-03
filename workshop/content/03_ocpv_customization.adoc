@@ -190,6 +190,7 @@ If the `Paste` functionality is not working, take into consideration that the co
 . You may verify if the service is running using `systemctl status patient-portal-database.service`
 +
 image::images/Create_VM_URL/13_Custom_Script_Service_status.png[]
+
 ////
 == Virtual Machine Templates
 

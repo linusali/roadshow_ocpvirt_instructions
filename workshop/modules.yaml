@@ -25,10 +25,8 @@ modules:
         name: 'Storage Management'
     06_backup_restore:
         name: 'Backup and Restore'
-    07_service_route:
-        name: 'Exposing apps using a Route'
     08_metallb:
-        name: 'Exposing apps using MetalLB'
+        name: 'Optional: Exposing apps using MetalLB'
     09_migrate_vms:
         name: 'Optional: Migrating Virtual Machines'
     10_windows_vm:

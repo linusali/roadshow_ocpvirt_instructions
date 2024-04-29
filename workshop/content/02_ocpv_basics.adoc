@@ -120,11 +120,11 @@ image::images/Create_VM_PVC/17_Fedora_CPU_Memory.png[]
 +
 image::images/Create_VM_PVC/21_Fedora01_Cloud_Init.png[]
 
-. The instance is running the guest agent to surface information about the guest OS to the hypervsior, along with coordinating tasks such as disk quiescing for snapshots.
+. The instance is running the guest agent to surface information about the guest OS to the hypervisor, along with coordinating tasks such as disk quiescing for snapshots.
 +
 image::images/Create_VM_PVC/19_Fedora_Agent.png[]
 
-. Click the *Overview* tab to show the information obtained from the guest VM, such as the disk utilization, along with seeing resource utlization information:
+. Click the *Overview* tab to show the information obtained from the guest VM, such as the disk utilization, along with seeing resource utilization information:
 +
 image::images/Create_VM_PVC/19_Fedora_Agent_Details.png[]
 +
@@ -193,7 +193,7 @@ image::images/Pods_Migration/33_VM_Actions_Paused.png[]
 
 The overview dashboard provides a cluster-level view of virtual machines and resources used, along with status information for the health of OpenShift Virtualization and virtual machines. It is a useful starting point for administrators who want a quick and high-level view of what's happening with OpenShift Virtualization.
 
-. From the left navigation menu, browse to *Virtualization* -> *Overview*
+. From the left navigation menu, browse to *Virtualization* -> *Overview* and select *Project:* -> *All projects*
 +
 image::images/Create_VM_PVC/create_overview_413.png[]
 +
